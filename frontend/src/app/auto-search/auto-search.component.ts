@@ -44,6 +44,11 @@ export class AutoSearchComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate(['filter', {area: this.areaSearch.value}]);
+    if (this.areaSearch.value != null && this.options.includes(this.areaSearch.value)) {
+      this.router.navigate(['filter', {area: this.areaSearch.value}]);
+    }
+    else {
+
+    }
   }
 }

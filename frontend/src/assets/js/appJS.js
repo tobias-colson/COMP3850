@@ -8,7 +8,7 @@ function setPath(points) {
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 15,
     center: { lat: -32.921178, lng: 151.702009 },
     mapTypeId: 'terrain'
   });

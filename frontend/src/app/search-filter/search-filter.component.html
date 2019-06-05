@@ -25,7 +25,7 @@
     </form>
     <form class="search-filter-right">
       <mat-form-field class="search-full-width" appearance="fill">
-        <input type="text" placeholder="Path" matInput [formControl]="pathSearch" [matAutocomplete]="path" (keydown.enter)="findPoints()">
+        <input type="text" id="path" placeholder="Path" matInput [formControl]="pathSearch" [matAutocomplete]="path" (keydown.enter)="findPoints()">
         <mat-autocomplete #path="matAutocomplete">
           <mat-option *ngFor="let path of pathOptions | async" [value]="path">
             {{path}}

@@ -1,6 +1,6 @@
 from celery import shared_task
 from celery.contrib import rdb
-from .algorithms import findCluster
+from commons.algorithms import findCluster
 from .models import Cluster, RunArea, RunPath
 from rest_framework.parsers import JSONParser
 from .serializers import RunPathSerializer, \
@@ -39,18 +39,22 @@ def run_findCluster(data):
         elif 'neighbourhood' in address.keys():
             area = address['neighbourhood']
         else:
-            area = 'get key'
+            area = None
 
         if 'suburb' in address.keys():
             suburb = address['suburb']
         elif 'state' in address.keys():
             suburb = address['state']
         else:
-            suburb = 'get key'
-        area_name = area + ' ' + suburb
+            suburb = None
+
+        if area is None or suburb is None:
+            area_name = json['display_name']
+        else:
+            area_name = area + ' ' + suburb
 
         # find if area_name exists
-        match_run_area = findCluster(data, run_areas)
+        match_run_area = findCluster(data, run_areas, dist_thresh=1000)
 
         # Add an area 
         if match_run_area is None:

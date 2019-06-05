@@ -22,6 +22,7 @@ dj-database-url = "*"
 django-configurations = "*"
 whitenoise = "*"
 django-celery-results = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.5"

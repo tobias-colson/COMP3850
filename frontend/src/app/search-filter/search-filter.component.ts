@@ -25,7 +25,7 @@ export class SearchFilterComponent implements OnInit {
 
   areaSearch = new FormControl();
   clusterSearch = new FormControl();
-  pathSearch = new FormControl();
+  pathSearch = new FormControl({value: '', disabled: true});
 
   options: string[] = [];
   filteredAreas: Observable<string[]>;
@@ -74,6 +74,7 @@ export class SearchFilterComponent implements OnInit {
       var option = paths.map(obj => obj.path)
       this.pathOptions = of(option);
     })
+    this.pathSearch.enable();
   }
 
   findPoints() {
@@ -84,6 +85,7 @@ export class SearchFilterComponent implements OnInit {
         console.log(pointValues);
         var x = [{lat: 0, lng: 0}];
         for (var i = 0;  i < pointValues.length; i++) {
+          
           if (!(i % 2)) {
             x [i] = {lat: pointValues[i], lng: pointValues[i+1]}
           }

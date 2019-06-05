@@ -48,9 +48,12 @@ class BaseSettings(Configuration):
         'rest_framework',
         'runner_api_backend',
         'upload',
+        # allow CORS 
+        'corsheaders',
     ]
 
     MIDDLEWARE = [
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -59,6 +62,15 @@ class BaseSettings(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
+
+    # TODO: determine if this should not be allowed in ProdSettings
+    CORS_ORIGIN_ALLOW_ALL = True
+
+    # Use this to whitelist only trusted domains
+    # CORS_ORIGIN_ALLOW_ALL = False
+    # CORS_ORIGIN_WHITELIST = [
+    #     'http://localhost:4200'
+    # ]
 
 
     ROOT_URLCONF = 'runner_recommender_app.urls'
